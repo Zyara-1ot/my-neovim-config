@@ -6,6 +6,7 @@
 
 ![Neovim](https://img.shields.io/badge/Neovim-0.9%2B-57A143?style=for-the-badge&logo=neovim&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![Lua](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white)
 
@@ -38,13 +39,13 @@
 - **System clipboard** - `Ctrl+C` / `Ctrl+V` work just like everywhere else
 - **Slick tabline** - bufferline with slanted "Glass" separators
 - **VS Code muscle memory** - familiar keybinds so the transition is painless
-- **Cross-platform** - works on Linux and Windows
+- **Cross-platform** - works on Linux, macOS, and Windows
 
 ---
 
 ## Requirements
 
-These dependencies are required on **both Linux and Windows**:
+These dependencies are required on **all platforms**:
 
 | Dependency | Version | Notes |
 |---|---|---|
@@ -63,6 +64,22 @@ sudo dnf install neovim git nodejs ripgrep gcc gh
 ```
 
 For other distros, replace `dnf` with your package manager (`apt`, `pacman`, etc.).
+
+### macOS
+
+The easiest way is with [Homebrew](https://brew.sh/). If you don't have it:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Then install everything:
+
+```bash
+brew install neovim git node ripgrep gcc gh
+```
+
+> **macOS tip:** Use [iTerm2](https://iterm2.com/) or the built-in Terminal with your Nerd Font set as the font for the best experience.
 
 ### Windows
 
@@ -102,6 +119,19 @@ git clone https://github.com/Zyara-1ot/my-neovim-config.git ~/.config/nvim
 nvim
 ```
 
+### macOS
+
+```bash
+# Step 1: Back up any existing Neovim config (safety first!)
+mv ~/.config/nvim ~/.config/nvim.bak 2>/dev/null; true
+
+# Step 2: Clone this repository as your Neovim config
+git clone https://github.com/Zyara-1ot/my-neovim-config.git ~/.config/nvim
+
+# Step 3: Open Neovim - it will auto-install all plugins
+nvim
+```
+
 ### Windows (PowerShell)
 
 ```powershell
@@ -117,7 +147,7 @@ nvim
 
 > On Windows, Neovim config lives at `%LOCALAPPDATA%\nvim` instead of `~/.config/nvim`. Everything **inside** the config folder is identical - only the root location is different.
 
-On first launch on either OS, Lazy.nvim will bootstrap itself and install every plugin automatically. This may take 1-2 minutes. Once done, restart Neovim and everything will be ready.
+On first launch on any OS, Lazy.nvim will bootstrap itself and install every plugin automatically. This may take 1-2 minutes. Once done, restart Neovim and everything will be ready.
 
 ---
 
@@ -127,7 +157,7 @@ We chose [LazyVim](https://www.lazyvim.org/) as our base because it provides a c
 
 ### Step 1: Clean up any old config
 
-**Linux:**
+**Linux / macOS:**
 ```bash
 mv ~/.config/nvim ~/.config/nvim.bak
 ```
@@ -139,7 +169,7 @@ Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
 
 ### Step 2: Clone the LazyVim starter template
 
-**Linux:**
+**Linux / macOS:**
 ```bash
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 ```
@@ -153,7 +183,7 @@ This gives us a ready-to-run Neovim config with Lazy.nvim, sensible defaults, an
 
 ### Step 3: Detach from the upstream git
 
-**Linux:**
+**Linux / macOS:**
 ```bash
 rm -rf ~/.config/nvim/.git
 ```
@@ -167,7 +197,7 @@ Removing `.git` disconnects this folder from the LazyVim starter's history so yo
 
 ### Step 4: Initialize your own repo (optional but recommended)
 
-This is identical on both platforms:
+This is identical on all platforms:
 
 ```bash
 git init
@@ -179,7 +209,7 @@ git commit -m "Initial LazyVim base"
 
 ## Phase 2 - Theme & Visual Overhaul
 
-Everything in this phase is **pure Lua - identical on Linux and Windows.**
+Everything in this phase is **pure Lua - identical on Linux, macOS, and Windows.**
 
 ### 1. Install `gruvbox.nvim`
 
@@ -265,6 +295,7 @@ return {
 Treesitter compiles parsers using a C compiler. Make sure one is installed:
 
 - **Linux (Fedora):** `sudo dnf install gcc`
+- **macOS:** `brew install gcc` (or just install Xcode Command Line Tools: `xcode-select --install`)
 - **Windows:** `scoop install gcc` (MinGW)
 
 ### 2. Override Colors with the "Rainbow" Palette
@@ -325,7 +356,7 @@ Each color was chosen to carry semantic meaning:
 
 ## Phase 4 - VS Code-Style Keymaps
 
-Switching from VS Code is painful if your muscle memory keeps firing. These keymaps close that gap. All of this Lua config is **identical on Linux and Windows** - only one small clipboard note differs.
+Switching from VS Code is painful if your muscle memory keeps firing. These keymaps close that gap. All of this Lua config is **identical on all platforms** - only the clipboard setup has small platform differences.
 
 Create or edit `lua/config/keymaps.lua`:
 
@@ -346,11 +377,11 @@ vim.keymap.set("t", "<A-Down>", "<C-\\><C-n>:resize -2<CR>i", { desc = "Decrease
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 ```
 
-On Linux this opens Bash/Zsh. On Windows it opens PowerShell or CMD depending on your default shell - works the same either way.
+On Linux/macOS this opens Bash/Zsh. On Windows it opens PowerShell or CMD depending on your default shell - works the same either way.
 
 ### 2. System Clipboard (Ctrl+C / Ctrl+V)
 
-The Lua keymaps are identical on both platforms:
+The Lua keymaps are identical on all platforms:
 
 ```lua
 -- Ctrl+C: copy selection to system clipboard (works in visual mode)
@@ -367,6 +398,8 @@ Also add this to `lua/config/options.lua` to always sync the clipboard automatic
 vim.opt.clipboard = "unnamedplus"
 ```
 
+> **macOS:** Clipboard works out of the box, no extra setup needed.
+>
 > **Windows:** Clipboard works out of the box, no extra setup needed.
 >
 > **Linux:** Neovim needs a clipboard provider:
@@ -387,11 +420,12 @@ vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 
 ## File Structure
 
-The internal folder structure is **identical on both platforms**. Only the root config path differs:
+The internal folder structure is **identical on all platforms**. Only the root config path differs:
 
 | OS | Config Path |
 |---|---|
 | Linux | `~/.config/nvim/` |
+| macOS | `~/.config/nvim/` |
 | Windows | `%LOCALAPPDATA%\nvim\` |
 
 ```
@@ -447,6 +481,7 @@ These shortcuts were specifically added to bridge the gap between Neovim and a m
 | Navigation | `Shift + L` | Normal | Switch to the next tab (Buffer) |
 | Navigation | `Shift + H` | Normal | Switch to the previous tab (Buffer) |
 | Explorer | `<leader>e` | Normal | Toggle Neo-tree (File Explorer) |
+
 ---
 
 ## Credits
@@ -462,5 +497,5 @@ Built on top of these excellent projects:
 ---
 
 <div align="center">
-Made with love on Fedora Linux - Works on Windows too
+Made with love on Fedora Linux - Works on macOS and Windows too
 </div>
