@@ -433,17 +433,20 @@ Full Gruvbox Hard palette used in this config:
 
 ## Keybind Reference
 
-| Key | Mode | Action |
-|---|---|---|
-| `Ctrl + \` | Normal | Toggle bottom terminal |
-| `Alt + Up` | Terminal | Increase terminal height |
-| `Alt + Down` | Terminal | Decrease terminal height |
-| `Esc` | Terminal | Exit terminal mode |
-| `Ctrl + C` | Visual | Copy to system clipboard |
-| `Ctrl + V` | Normal / Insert | Paste from system clipboard |
-| `Shift + L` | Normal | Go to next buffer |
-| `Shift + H` | Normal | Go to previous buffer |
+These shortcuts were specifically added to bridge the gap between Neovim and a modern IDE workflow.
 
+| Category | Shortcut | Mode | Action |
+|---|---|---|---|
+| Terminal | `Ctrl + \` | Normal | Toggle bottom terminal |
+| Terminal | `Alt + Up` | Terminal | Increase terminal height |
+| Terminal | `Alt + Down` | Terminal | Decrease terminal height |
+| Terminal | `Esc` | Terminal | Exit terminal mode to normal mode |
+| Clipboard | `Ctrl + C` | Visual | Copy selection to system clipboard |
+| Clipboard | `Ctrl + V` | Normal | Paste from system clipboard |
+| Clipboard | `Ctrl + V` | Insert | Paste from system clipboard (Insert mode) |
+| Navigation | `Shift + L` | Normal | Switch to the next tab (Buffer) |
+| Navigation | `Shift + H` | Normal | Switch to the previous tab (Buffer) |
+| Explorer | `<leader>e` | Normal | Toggle Neo-tree (File Explorer) |
 ---
 
 ## Credits
