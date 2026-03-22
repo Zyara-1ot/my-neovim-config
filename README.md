@@ -2,7 +2,7 @@
 
 # Rainbow Gruvbox Neovim
 
-** Neovim setup built on LazyVim  with deep Gruvbox contrast and full rainbow syntax highlighting.**
+**Neovim setup built on LazyVim with deep Gruvbox contrast and full rainbow syntax highlighting.**
 
 ![Neovim](https://img.shields.io/badge/Neovim-0.9%2B-57A143?style=for-the-badge&logo=neovim&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
@@ -15,35 +15,34 @@
 
 ## Table of Contents
 
-- [ Features](#-features)
-- [ Requirements](#-requirements)
-- [ Quick Install](#-quick-install)
-- [ Phase 1 — The Foundation (LazyVim)](#-phase-1--the-foundation-lazyvim)
-- [ Phase 2 - Theme & Visual Overhaul](#-phase-2---theme--visual-overhaul)
-- [ Phase 3 — Rainbow Syntax Highlighting](#-phase-3--rainbow-syntax-highlighting)
-- [ Phase 4 - VS Code-Style Keymaps](#-phase-4---vs-code-style-keymaps)
-- [ File Structure](#-file-structure)
-- [ Color Reference](#-color-reference)
-- [ Keybind Reference](#️-keybind-reference)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Quick Install](#quick-install)
+- [Phase 1 - The Foundation (LazyVim)](#phase-1---the-foundation-lazyvim)
+- [Phase 2 - Theme & Visual Overhaul](#phase-2---theme--visual-overhaul)
+- [Phase 3 - Rainbow Syntax Highlighting](#phase-3---rainbow-syntax-highlighting)
+- [Phase 4 - VS Code-Style Keymaps](#phase-4---vs-code-style-keymaps)
+- [File Structure](#file-structure)
+- [Color Reference](#color-reference)
+- [Keybind Reference](#keybind-reference)
 
----
 ---
 
 ## Features
 
 - **LazyVim base** - blazing-fast startup with lazy plugin loading
--  **Gruvbox Hard** - the darkest, highest-contrast Gruvbox mode
--  **Rainbow syntax** - every code element has its own distinct color (functions, types, operators, variables)
--  **Treesitter-powered** - accurate, grammar-aware highlighting for C, C++, and Lua
--  **Integrated terminal** - toggle a bottom terminal without leaving Neovim
--  **System clipboard** - `Ctrl+C` / `Ctrl+V` work just like everywhere else
--  **Slick tabline** - bufferline with slanted "Glass" separators
--  **VS Code muscle memory** - familiar keybinds so the transition is painless
--  **Cross-platform** - works on Linux and Windows
+- **Gruvbox Hard** - the darkest, highest-contrast Gruvbox mode
+- **Rainbow syntax** - every code element has its own distinct color (functions, types, operators, variables)
+- **Treesitter-powered** - accurate, grammar-aware highlighting for C, C++, and Lua
+- **Integrated terminal** - toggle a bottom terminal without leaving Neovim
+- **System clipboard** - `Ctrl+C` / `Ctrl+V` work just like everywhere else
+- **Slick tabline** - bufferline with slanted "Glass" separators
+- **VS Code muscle memory** - familiar keybinds so the transition is painless
+- **Cross-platform** - works on Linux and Windows
 
 ---
 
-##  Requirements
+## Requirements
 
 These dependencies are required on **both Linux and Windows**:
 
@@ -55,7 +54,7 @@ These dependencies are required on **both Linux and Windows**:
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | Any | Powers fuzzy file search |
 | [gcc](https://gcc.gnu.org/) or [clang](https://clang.llvm.org/) | Any | For Treesitter to compile parsers |
 | [GitHub CLI (`gh`)](https://cli.github.com/) | Any | For GitHub authentication (optional but recommended) |
-| [Nerd Font](https://www.nerdfonts.com/) | Any | Required for icons in the UI ,set it as your terminal font |
+| [Nerd Font](https://www.nerdfonts.com/) | Any | Required for icons in the UI, set it as your terminal font |
 
 ### Linux (Fedora)
 
@@ -65,9 +64,9 @@ sudo dnf install neovim git nodejs ripgrep gcc gh
 
 For other distros, replace `dnf` with your package manager (`apt`, `pacman`, etc.).
 
-###  Windows
+### Windows
 
-The easiest way is with [Scoop](https://scoop.sh/) — open PowerShell and run:
+The easiest way is with [Scoop](https://scoop.sh/) - open PowerShell and run:
 
 ```powershell
 # Install Scoop if you don't have it
@@ -88,9 +87,9 @@ winget install Neovim.Neovim Git.Git OpenJS.NodeJS BurntSushi.ripgrep.MSVC GitHu
 
 ---
 
-##  Quick Install
+## Quick Install
 
-###  Linux
+### Linux
 
 ```bash
 # Step 1: Back up any existing Neovim config (safety first!)
@@ -99,11 +98,11 @@ mv ~/.config/nvim ~/.config/nvim.bak 2>/dev/null; true
 # Step 2: Clone this repository as your Neovim config
 git clone https://github.com/Zyara-1ot/my-neovim-config.git ~/.config/nvim
 
-# Step 3: Open Neovim — it will auto-install all plugins
+# Step 3: Open Neovim - it will auto-install all plugins
 nvim
 ```
 
-###  Windows (PowerShell)
+### Windows (PowerShell)
 
 ```powershell
 # Step 1: Back up any existing Neovim config
@@ -112,40 +111,40 @@ Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak -ErrorAction Silentl
 # Step 2: Clone this repository as your Neovim config
 git clone https://github.com/Zyara-1ot/my-neovim-config.git $env:LOCALAPPDATA\nvim
 
-# Step 3: Open Neovim — it will auto-install all plugins
+# Step 3: Open Neovim - it will auto-install all plugins
 nvim
 ```
 
-> On Windows, Neovim config lives at `%LOCALAPPDATA%\nvim` instead of `~/.config/nvim`. Everything **inside** the config folder is identical — only the root location is different.
+> On Windows, Neovim config lives at `%LOCALAPPDATA%\nvim` instead of `~/.config/nvim`. Everything **inside** the config folder is identical - only the root location is different.
 
-On first launch on either OS, Lazy.nvim will bootstrap itself and install every plugin automatically. This may take 1–2 minutes. Once done, restart Neovim and everything will be ready.
+On first launch on either OS, Lazy.nvim will bootstrap itself and install every plugin automatically. This may take 1-2 minutes. Once done, restart Neovim and everything will be ready.
 
 ---
 
-##  Phase 1 - The Foundation (LazyVim)
+## Phase 1 - The Foundation (LazyVim)
 
 We chose [LazyVim](https://www.lazyvim.org/) as our base because it provides a complete, opinionated Neovim setup with excellent defaults, while still being fully customizable.
 
 ### Step 1: Clean up any old config
 
-** Linux:**
+**Linux:**
 ```bash
 mv ~/.config/nvim ~/.config/nvim.bak
 ```
 
-** Windows (PowerShell):**
+**Windows (PowerShell):**
 ```powershell
 Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
 ```
 
 ### Step 2: Clone the LazyVim starter template
 
-** Linux:**
+**Linux:**
 ```bash
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 ```
 
-** Windows (PowerShell):**
+**Windows (PowerShell):**
 ```powershell
 git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
 ```
@@ -154,12 +153,12 @@ This gives us a ready-to-run Neovim config with Lazy.nvim, sensible defaults, an
 
 ### Step 3: Detach from the upstream git
 
-** Linux:**
+**Linux:**
 ```bash
 rm -rf ~/.config/nvim/.git
 ```
 
-** Windows (PowerShell):**
+**Windows (PowerShell):**
 ```powershell
 Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 ```
@@ -231,7 +230,7 @@ The `"slant"` separator style gives the tabline a modern, layered look where eac
 
 ---
 
-##  Phase 3 - Rainbow Syntax Highlighting
+## Phase 3 - Rainbow Syntax Highlighting
 
 Standard Neovim highlights most code in white or gray. We force every meaningful part of the code to have its own color, making it easier to read at a glance. **This phase is entirely cross-platform.**
 
@@ -265,8 +264,8 @@ return {
 
 Treesitter compiles parsers using a C compiler. Make sure one is installed:
 
-- ** Linux (Fedora):** `sudo dnf install gcc`
-- ** Windows:** `scoop install gcc` (MinGW)
+- **Linux (Fedora):** `sudo dnf install gcc`
+- **Windows:** `scoop install gcc` (MinGW)
 
 ### 2. Override Colors with the "Rainbow" Palette
 
@@ -285,7 +284,7 @@ require("gruvbox").setup({
     -- Operators (+, -, *, =, etc.): punchy orange
     ["@operator"]            = { fg = "#fe8019" },
 
-    -- Variables: warm cream — present but not distracting
+    -- Variables: warm cream - present but not distracting
     ["@variable"]            = { fg = "#ebdbb2" },
     ["@variable.builtin"]    = { fg = "#ebdbb2", italic = true },
 
@@ -315,18 +314,18 @@ Each color was chosen to carry semantic meaning:
 
 | Color | Hex | Used for | Why |
 |---|---|---|---|
-| 🟡 Bright Yellow | `#fabd2f` | Functions | The most important thing — should jump out |
-| 🟠 Bright Orange | `#fe8019` | Operators | Active, doing something — energetic |
-| 🟤 Warm Cream | `#ebdbb2` | Variables | Neutral, readable — the "body text" |
-| 🟢 Aqua Green | `#8ec07c` | Types | Cool and distinct from functions |
-| 🟣 Purple | `#d3869b` | Keywords | Structural, memorable |
-| 🔵 Blue | `#83a598` | Constants | Stable, fixed values |
+| Bright Yellow | `#fabd2f` | Functions | The most important thing - should jump out |
+| Bright Orange | `#fe8019` | Operators | Active, doing something - energetic |
+| Warm Cream | `#ebdbb2` | Variables | Neutral, readable - the "body text" |
+| Aqua Green | `#8ec07c` | Types | Cool and distinct from functions |
+| Purple | `#d3869b` | Keywords | Structural, memorable |
+| Blue | `#83a598` | Constants | Stable, fixed values |
 
 ---
 
-##  Phase 4 - VS Code-Style Keymaps
+## Phase 4 - VS Code-Style Keymaps
 
-Switching from VS Code is painful if your muscle memory keeps firing. These keymaps close that gap. All of this Lua config is **identical on Linux and Windows** — only one small clipboard note differs.
+Switching from VS Code is painful if your muscle memory keeps firing. These keymaps close that gap. All of this Lua config is **identical on Linux and Windows** - only one small clipboard note differs.
 
 Create or edit `lua/config/keymaps.lua`:
 
@@ -368,9 +367,9 @@ Also add this to `lua/config/options.lua` to always sync the clipboard automatic
 vim.opt.clipboard = "unnamedplus"
 ```
 
-> ** Windows:** Clipboard works out of the box, no extra setup needed.
+> **Windows:** Clipboard works out of the box, no extra setup needed.
 >
-> ** Linux:** Neovim needs a clipboard provider:
+> **Linux:** Neovim needs a clipboard provider:
 > - X11: `sudo dnf install xclip`
 > - Wayland: `sudo dnf install wl-clipboard`
 
@@ -386,7 +385,6 @@ vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 
 ---
 
-
 ## File Structure
 
 The internal folder structure is **identical on both platforms**. Only the root config path differs:
@@ -398,7 +396,7 @@ The internal folder structure is **identical on both platforms**. Only the root 
 
 ```
 nvim/
-├── init.lua                   # Entry point — bootstraps Lazy.nvim
+├── init.lua                   # Entry point - bootstraps Lazy.nvim
 ├── lua/
 │   ├── config/
 │   │   ├── autocmds.lua       # Auto commands (e.g., format on save)
@@ -414,26 +412,26 @@ nvim/
 
 ---
 
-##  Color Reference
+## Color Reference
 
 Full Gruvbox Hard palette used in this config:
 
-| Name | Hex | Preview |
-|---|---|---|
-| Background (Hard) | `#1d2021` | ⬛ |
-| Background | `#282828` | ⬛ |
-| Foreground | `#ebdbb2` | 🟤 |
-| Bright Yellow | `#fabd2f` | 🟡 |
-| Bright Orange | `#fe8019` | 🟠 |
-| Aqua Green | `#8ec07c` | 🟢 |
-| Purple | `#d3869b` | 🟣 |
-| Blue | `#83a598` | 🔵 |
-| Green | `#b8bb26` | 💚 |
-| Comment Gray | `#928374` | 🔘 |
+| Name | Hex |
+|---|---|
+| Background (Hard) | `#1d2021` |
+| Background | `#282828` |
+| Foreground | `#ebdbb2` |
+| Bright Yellow | `#fabd2f` |
+| Bright Orange | `#fe8019` |
+| Aqua Green | `#8ec07c` |
+| Purple | `#d3869b` |
+| Blue | `#83a598` |
+| Green | `#b8bb26` |
+| Comment Gray | `#928374` |
 
 ---
 
-##  Keybind Reference
+## Keybind Reference
 
 | Key | Mode | Action |
 |---|---|---|
@@ -448,7 +446,7 @@ Full Gruvbox Hard palette used in this config:
 
 ---
 
-##  Credits
+## Credits
 
 Built on top of these excellent projects:
 
@@ -460,3 +458,6 @@ Built on top of these excellent projects:
 
 ---
 
+<div align="center">
+Made with love on Fedora Linux - Works on Windows too
+</div>
