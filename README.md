@@ -18,14 +18,15 @@
 - [ Features](#-features)
 - [ Requirements](#-requirements)
 - [ Quick Install](#-quick-install)
-- [ Phase 1 ~ The Foundation (LazyVim)](#️-phase-1--the-foundation-lazyvim)
-- [ Phase 2 ~ Theme & Visual Overhaul](#-phase-2--theme--visual-overhaul)
-- [ Phase 3 ~ Rainbow Syntax Highlighting](#-phase-3--rainbow-syntax-highlighting)
-- [ Phase 4 ~ VS Code-Style Keymaps](#️-phase-4--vs-code-style-keymaps)
+- [ Phase 1 — The Foundation (LazyVim)](#-phase-1--the-foundation-lazyvim)
+- [ Phase 2 - Theme & Visual Overhaul](#-phase-2---theme--visual-overhaul)
+- [ Phase 3 — Rainbow Syntax Highlighting](#-phase-3--rainbow-syntax-highlighting)
+- [ Phase 4 - VS Code-Style Keymaps](#-phase-4---vs-code-style-keymaps)
 - [ File Structure](#-file-structure)
 - [ Color Reference](#-color-reference)
 - [ Keybind Reference](#️-keybind-reference)
 
+---
 ---
 
 ## Features
